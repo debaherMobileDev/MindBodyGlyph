@@ -86,7 +86,7 @@ struct UserStatistics: Codable {
             Achievement(title: "Novice", description: "Win 10 games", icon: "flame.fill", points: 50),
             Achievement(title: "Professional", description: "Win 50 games", icon: "crown.fill", points: 200),
             Achievement(title: "Master", description: "Win 100 games", icon: "trophy.fill", points: 500),
-            Achievement(title: "Health Guru", description: "Reach step goal for 7 days straight", icon: "heart.fill", points: 300),
+            Achievement(title: "Speed Demon", description: "Complete a puzzle in under 30 seconds", icon: "bolt.fill", points: 300),
             Achievement(title: "Point Collector", description: "Earn 10000 points", icon: "sparkles", points: 400),
         ]
     }

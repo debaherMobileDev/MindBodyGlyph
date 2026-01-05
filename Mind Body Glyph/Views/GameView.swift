@@ -34,11 +34,6 @@ struct GameView: View {
                 // Game Stats
                 statsView
                 
-                // Health Bar (if enabled)
-                if dataService.loadUserProfile().healthKitEnabled {
-                    healthBarView
-                }
-                
                 // Game Grid
                 if viewModel.gameState == .ready {
                     readyStateView
@@ -110,56 +105,6 @@ struct GameView: View {
             StatCard(title: "Moves", value: "\(viewModel.moves)", icon: "arrow.left.arrow.right")
             StatCard(title: "Time", value: timeString(from: viewModel.timeElapsed), icon: "clock.fill")
         }
-    }
-    
-    // MARK: - Health Bar View
-    
-    private var healthBarView: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Image(systemName: "heart.fill")
-                    .foregroundColor(.red)
-                Text("Today's Activity")
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.white)
-                
-                Spacer()
-                
-                Text("\(healthKitService.dailySteps) steps")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(Color(hex: "F3B700"))
-            }
-            
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    Rectangle()
-                        .fill(Color.white.opacity(0.2))
-                        .frame(height: 8)
-                        .cornerRadius(4)
-                    
-                    Rectangle()
-                        .fill(
-                            LinearGradient(
-                                colors: [Color.red, Color.orange, Color.green],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .frame(width: geometry.size.width * healthProgress, height: 8)
-                        .cornerRadius(4)
-                }
-            }
-            .frame(height: 8)
-        }
-        .padding()
-        .background(Color.white.opacity(0.1))
-        .cornerRadius(12)
-    }
-    
-    private var healthProgress: CGFloat {
-        let profile = dataService.loadUserProfile()
-        guard profile.dailyGoalSteps > 0 else { return 0 }
-        return min(CGFloat(healthKitService.dailySteps) / CGFloat(profile.dailyGoalSteps), 1.0)
     }
     
     // MARK: - Ready State View

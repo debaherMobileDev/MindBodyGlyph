@@ -395,9 +395,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Mind Body Glyph/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Casinacho Mind Body Glyph";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Mind Body Glyph uses step data from HealthKit to display your daily activity and motivate you to live a healthy lifestyle. This feature is completely optional.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Mind Body Glyph wants to access your health data to enhance your gaming experience.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -437,9 +434,6 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Mind Body Glyph/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Casinacho Mind Body Glyph";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Mind Body Glyph uses step data from HealthKit to display your daily activity and motivate you to live a healthy lifestyle. This feature is completely optional.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Mind Body Glyph wants to access your health data to enhance your gaming experience.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

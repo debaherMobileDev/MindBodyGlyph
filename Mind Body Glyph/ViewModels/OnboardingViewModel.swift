@@ -8,31 +8,24 @@ import SwiftUI
 class OnboardingViewModel: ObservableObject {
     @Published var currentPage = 0
     @Published var username = ""
-    @Published var enableHealthKit = false
     
     let pages: [OnboardingPage] = [
         OnboardingPage(
             title: "Welcome to\nMind Body Glyph",
-            description: "A unique puzzle game that develops your mind and motivates you to live an active lifestyle",
+            description: "A unique puzzle game that develops your mind with challenging memory puzzles",
             imageName: "brain.head.profile",
             color: Color(hex: "F3B700")
         ),
         OnboardingPage(
             title: "Solve Puzzles",
-            description: "Solve engaging puzzles of various types. Adaptive difficulty adjusts to your level",
+            description: "Match pairs of glyphs in this memory-matching game. Adaptive difficulty adjusts to your level",
             imageName: "puzzlepiece.extension.fill",
             color: Color(hex: "F3B700")
         ),
         OnboardingPage(
             title: "Track Progress",
-            description: "Complete daily quests, earn achievements, and compete with yourself",
+            description: "Complete daily quests, earn achievements, and compete with yourself to improve",
             imageName: "chart.line.uptrend.xyaxis",
-            color: Color(hex: "F3B700")
-        ),
-        OnboardingPage(
-            title: "Health (Optional)",
-            description: "Connect HealthKit to track your activity. This is completely optional - the game works without this feature",
-            imageName: "heart.fill",
             color: Color(hex: "F3B700")
         )
     ]
@@ -62,7 +55,6 @@ class OnboardingViewModel: ObservableObject {
         if !username.isEmpty {
             profile.username = username
         }
-        profile.healthKitEnabled = enableHealthKit
         dataService.saveUserProfile(profile)
     }
 }

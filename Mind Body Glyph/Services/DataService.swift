@@ -59,7 +59,7 @@ class DataService: ObservableObject {
         return [
             DailyQuest(type: .completePuzzles, date: today),
             DailyQuest(type: .achieveScore, date: today),
-            DailyQuest(type: .healthSteps, date: today)
+            DailyQuest(type: .playTime, date: today)
         ]
     }
     

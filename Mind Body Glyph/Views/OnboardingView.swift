@@ -77,15 +77,6 @@ struct OnboardingView: View {
     
     private func completeOnboarding() {
         viewModel.completeOnboarding(dataService: dataService)
-        
-        if viewModel.enableHealthKit {
-            healthKitService.requestAuthorization { success, _ in
-                if success {
-                    healthKitService.startObservingSteps()
-                }
-            }
-        }
-        
         withAnimation {
             hasCompletedOnboarding = true
         }
@@ -138,28 +129,6 @@ struct OnboardingPageView: View {
                             .background(Color.white.opacity(0.1))
                             .cornerRadius(10)
                     }
-                    
-                    // HealthKit Toggle
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Enable activity tracking")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.white)
-                            
-                            Text("Connect HealthKit for motivation")
-                                .font(.system(size: 12))
-                                .foregroundColor(.white.opacity(0.6))
-                        }
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: $viewModel.enableHealthKit)
-                            .labelsHidden()
-                            .tint(Color(hex: "F3B700"))
-                    }
-                    .padding()
-                    .background(Color.white.opacity(0.1))
-                    .cornerRadius(10)
                 }
                 .padding(.horizontal, 30)
                 .padding(.top, 20)

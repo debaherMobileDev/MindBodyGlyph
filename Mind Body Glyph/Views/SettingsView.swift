@@ -118,14 +118,6 @@ struct SettingsView: View {
                 StatRow(icon: "trophy.fill", title: "Games Won", value: "\(viewModel.profile.totalGamesWon)")
                 StatRow(icon: "percent", title: "Win Rate", value: String(format: "%.1f%%", viewModel.profile.winRate * 100))
                 StatRow(icon: "flame.fill", title: "Total Score", value: "\(viewModel.profile.totalScore)")
-                
-                if viewModel.profile.healthKitEnabled {
-                    Divider()
-                        .background(Color.white.opacity(0.2))
-                    
-                    StatRow(icon: "figure.walk", title: "Steps Today", value: "\(viewModel.statistics.healthStats.dailySteps)")
-                    StatRow(icon: "calendar", title: "Steps This Week", value: "\(viewModel.statistics.healthStats.weeklySteps)")
-                }
             }
             .padding()
             .background(Color.white.opacity(0.1))
@@ -222,18 +214,6 @@ struct SettingsView: View {
                     viewModel.saveProfile()
                 }
                 
-                Divider()
-                    .background(Color.white.opacity(0.2))
-                    .padding(.leading, 50)
-                
-                SettingToggleRow(
-                    icon: "heart.fill",
-                    title: "HealthKit",
-                    isOn: $viewModel.profile.healthKitEnabled
-                )
-                .onChange(of: viewModel.profile.healthKitEnabled) { _ in
-                    viewModel.toggleHealthKit()
-                }
             }
             .padding()
             .background(Color.white.opacity(0.1))

@@ -68,42 +68,6 @@ struct ContentView: View {
         // Update daily quests
         var statistics = dataService.loadUserStatistics()
         dataService.updateDailyQuests(statistics: &statistics)
-        
-        // Load health data if enabled
-        let profile = dataService.loadUserProfile()
-        if profile.healthKitEnabled && healthKitService.isHealthKitAvailable {
-            healthKitService.requestAuthorization { success, _ in
-                if success {
-                    healthKitService.startObservingSteps()
-                    updateHealthStats()
-                }
-            }
-        }
-    }
-    
-    private func updateHealthStats() {
-        healthKitService.fetchTodaySteps { dailySteps in
-            healthKitService.fetchWeeklySteps { weeklySteps in
-                healthKitService.fetchMonthlySteps { monthlySteps in
-                    var statistics = dataService.loadUserStatistics()
-                    let profile = dataService.loadUserProfile()
-                    dataService.updateHealthStats(
-                        statistics: &statistics,
-                        dailySteps: dailySteps,
-                        weeklySteps: weeklySteps,
-                        monthlySteps: monthlySteps,
-                        dailyGoal: profile.dailyGoalSteps
-                    )
-                    
-                    // Update health quest progress
-                    dataService.updateQuestProgress(
-                        statistics: &statistics,
-                        questType: .healthSteps,
-                        value: dailySteps
-                    )
-                }
-            }
-        }
     }
 }
 
