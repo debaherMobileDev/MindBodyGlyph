@@ -112,15 +112,5 @@ class DataService: ObservableObject {
         UserDefaults.standard.synchronize()
     }
     
-    // MARK: - Health Data Management
-    
-    func updateHealthStats(statistics: inout UserStatistics, dailySteps: Int, weeklySteps: Int, monthlySteps: Int, dailyGoal: Int) {
-        statistics.healthStats.dailySteps = dailySteps
-        statistics.healthStats.weeklySteps = weeklySteps
-        statistics.healthStats.monthlySteps = monthlySteps
-        statistics.healthStats.lastUpdated = Date()
-        statistics.healthStats.updateHealthBar(steps: dailySteps, goal: dailyGoal)
-        saveUserStatistics(statistics)
-    }
 }
 

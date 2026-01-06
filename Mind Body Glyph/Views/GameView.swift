@@ -8,12 +8,10 @@ import SwiftUI
 struct GameView: View {
     @StateObject private var viewModel: GameViewModel
     @StateObject var dataService: DataService
-    @StateObject var healthKitService: HealthKitService
     @State private var showPauseMenu = false
     
-    init(dataService: DataService, healthKitService: HealthKitService) {
+    init(dataService: DataService) {
         _dataService = StateObject(wrappedValue: dataService)
-        _healthKitService = StateObject(wrappedValue: healthKitService)
         
         let profile = dataService.loadUserProfile()
         _viewModel = StateObject(wrappedValue: GameViewModel(

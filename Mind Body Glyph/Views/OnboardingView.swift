@@ -9,7 +9,6 @@ struct OnboardingView: View {
     @StateObject private var viewModel = OnboardingViewModel()
     @Binding var hasCompletedOnboarding: Bool
     @StateObject var dataService: DataService
-    @StateObject var healthKitService: HealthKitService
     
     var body: some View {
         ZStack {

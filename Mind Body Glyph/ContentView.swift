@@ -15,7 +15,6 @@ import SwiftUI
 struct ContentView: View {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
     @StateObject private var dataService = DataService()
-    @StateObject private var healthKitService = HealthKitService()
     @State private var selectedTab = 0
     
     var body: some View {
@@ -25,8 +24,7 @@ struct ContentView: View {
             } else {
                 OnboardingView(
                     hasCompletedOnboarding: $hasCompletedOnboarding,
-                    dataService: dataService,
-                    healthKitService: healthKitService
+                    dataService: dataService
                 )
             }
         }
@@ -37,7 +35,7 @@ struct ContentView: View {
     
     private var mainTabView: some View {
         TabView(selection: $selectedTab) {
-            GameView(dataService: dataService, healthKitService: healthKitService)
+            GameView(dataService: dataService)
                 .tabItem {
                     Label("Game", systemImage: "gamecontroller.fill")
                 }
@@ -50,10 +48,7 @@ struct ContentView: View {
                 .tag(1)
             
             SettingsView(
-                viewModel: SettingsViewModel(
-                    dataService: dataService,
-                    healthKitService: healthKitService
-                ),
+                viewModel: SettingsViewModel(dataService: dataService),
                 hasCompletedOnboarding: $hasCompletedOnboarding
             )
             .tabItem {

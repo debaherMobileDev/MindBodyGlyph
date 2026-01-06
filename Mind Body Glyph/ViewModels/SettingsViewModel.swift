@@ -9,14 +9,11 @@ class SettingsViewModel: ObservableObject {
     @Published var profile: UserProfile
     @Published var statistics: UserStatistics
     @Published var showDeleteConfirmation = false
-    @Published var showHealthKitPermission = false
     
     private let dataService: DataService
-    private let healthKitService: HealthKitService
     
-    init(dataService: DataService, healthKitService: HealthKitService) {
+    init(dataService: DataService) {
         self.dataService = dataService
-        self.healthKitService = healthKitService
         self.profile = dataService.loadUserProfile()
         self.statistics = dataService.loadUserStatistics()
     }
@@ -47,29 +44,6 @@ class SettingsViewModel: ObservableObject {
     
     func toggleHaptics() {
         profile.hapticsEnabled.toggle()
-        saveProfile()
-    }
-    
-    func toggleHealthKit() {
-        if !profile.healthKitEnabled {
-            // Request permission
-            healthKitService.requestAuthorization { [weak self] success, error in
-                DispatchQueue.main.async {
-                    if success {
-                        self?.profile.healthKitEnabled = true
-                        self?.saveProfile()
-                        self?.healthKitService.startObservingSteps()
-                    }
-                }
-            }
-        } else {
-            profile.healthKitEnabled = false
-            saveProfile()
-        }
-    }
-    
-    func updateDailyStepGoal(_ goal: Int) {
-        profile.dailyGoalSteps = goal
         saveProfile()
     }
     

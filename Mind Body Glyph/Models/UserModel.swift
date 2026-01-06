@@ -15,8 +15,6 @@ struct UserProfile: Codable {
     var createdAt: Date
     var lastPlayedAt: Date?
     var preferredDifficulty: DifficultyLevel
-    var healthKitEnabled: Bool
-    var dailyGoalSteps: Int
     var soundEnabled: Bool
     var hapticsEnabled: Bool
     
@@ -29,8 +27,6 @@ struct UserProfile: Codable {
         self.createdAt = Date()
         self.lastPlayedAt = nil
         self.preferredDifficulty = .easy
-        self.healthKitEnabled = false
-        self.dailyGoalSteps = 5000
         self.soundEnabled = true
         self.hapticsEnabled = true
     }
@@ -41,43 +37,16 @@ struct UserProfile: Codable {
     }
 }
 
-// MARK: - Health Stats
-struct HealthStats: Codable {
-    var dailySteps: Int
-    var weeklySteps: Int
-    var monthlySteps: Int
-    var lastUpdated: Date
-    var healthBarLevel: Double // 0.0 to 1.0
-    
-    init() {
-        self.dailySteps = 0
-        self.weeklySteps = 0
-        self.monthlySteps = 0
-        self.lastUpdated = Date()
-        self.healthBarLevel = 0.5
-    }
-    
-    mutating func updateHealthBar(steps: Int, goal: Int) {
-        guard goal > 0 else {
-            healthBarLevel = 0.5
-            return
-        }
-        healthBarLevel = min(Double(steps) / Double(goal), 1.0)
-    }
-}
-
 // MARK: - User Statistics
 struct UserStatistics: Codable {
     var gameSessions: [GameSession]
     var achievements: [Achievement]
     var dailyQuests: [DailyQuest]
-    var healthStats: HealthStats
     
     init() {
         self.gameSessions = []
         self.achievements = UserStatistics.createDefaultAchievements()
         self.dailyQuests = []
-        self.healthStats = HealthStats()
     }
     
     static func createDefaultAchievements() -> [Achievement] {
